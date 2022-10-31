@@ -10,3 +10,15 @@
 .mat-card {
   border: solid 2px #ffffff;
 }
+
+.content-credits {
+  max-height: 200px !important;
+  min-height: 200px !important;
+  border: 1px solid #ddd;
+	background: #f1f1f1;
+	overflow-y: scroll;
+}
+
+.credit {
+  height: auto;
+}

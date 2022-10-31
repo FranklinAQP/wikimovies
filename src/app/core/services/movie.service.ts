@@ -24,4 +24,10 @@ export class MovieService {
       `${environment.theMovieApi.baseUrl}${environment.theMovieApi.getMovie}${idMovie}?api_key=${environment.theMovieApi.apiKey}&language=es-ES`
     );
   }
+
+  getCreditsId(idMovie: string): Observable<any> {
+    return this.httpClient.get(
+      `${environment.theMovieApi.baseUrl}${environment.theMovieApi.getMovie}${idMovie}/credits?api_key=${environment.theMovieApi.apiKey}&language=es-ES`
+    );
+  }
 }

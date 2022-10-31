@@ -20,4 +20,8 @@ export const environment = {
     authText: 'Authorization',
     tokenText: 'Bearer',
   },
+  rickandmortyapi: {
+    baseUrl: 'https://rickandmortyapi.com/api',
+    character: '/character/',
+  },
 };

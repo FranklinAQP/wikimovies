@@ -3,8 +3,11 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormGroupDirective,
+  NgForm,
   Validators,
 } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -12,6 +15,13 @@ import { RegisterValidationsMessages } from '../core/helpers/messages/validation
 import { UserModel } from '../core/models/user.model';
 import { AuthService } from '../core/services/auth.service';
 
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,6 +30,8 @@ import { AuthService } from '../core/services/auth.service';
 export class RegisterComponent implements OnInit {
   @ViewChild('templateModal')
   templateRefModal!: TemplateRef<any>;
+  validations = RegisterValidationsMessages;
+  matcher = new MyErrorStateMatcher();
 
   message = '';
   registerForm: FormGroup;
@@ -65,4 +77,8 @@ export class RegisterComponent implements OnInit {
     });
   }
   ngOnInit(): void {}
+
+  getError(formControl: 'firstName' | 'lastName' | 'email' | 'password', type: string){
+    return this.validations[formControl].find(item => item.type === type)?.message;
+  }
 }

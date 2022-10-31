@@ -1,60 +1,52 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
     <mat-card-header>
-      <mat-card-title
-        ><img
-          mat-card-sm-image
+      <mat-card-title><img mat-card-sm-image
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Movies_%26_TV_films_2016.svg/500px-Movies_%26_TV_films_2016.svg.png"
-          alt="logo"
-      /></mat-card-title>
+          alt="logo" /></mat-card-title>
     </mat-card-header>
-    <form
-      class="public-form"
-      [formGroup]="registerForm"
-      (ngSubmit)="handleSignUp(registerForm.value)"
-    >
+    <form class="public-form" [formGroup]="registerForm" (ngSubmit)="handleSignUp(registerForm.value)">
       <mat-card-content>
         <mat-form-field class="public-form-full-width">
-          <input
-            matInput
-            placeholder="Nombres"
-            formControlName="firstName"
-            name="firstName"
-          />
+          <input matInput placeholder="Nombres" formControlName='firstName' name="firstName"
+            [errorStateMatcher]="matcher" />
+          <mat-error *ngIf="registerForm.controls['firstName'].hasError('required')">
+            {{getError('firstName', 'required')}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="public-form-full-width">
+          <input matInput placeholder="Apellidos" formControlName="lastName" name="lastName"
+            [errorStateMatcher]="matcher" />
+          <mat-error *ngIf="registerForm.controls['lastName'].hasError('required')">
+            {{getError('lastName', 'required')}}
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="public-form-full-width">
-          <input
-            matInput
-            placeholder="Apellidos"
-            formControlName="lastName"
-            name="lastName"
-          />
+          <input matInput placeholder="Correo Electrónico" formControlName="email" name="email"
+            [errorStateMatcher]="matcher" />
+          <mat-error
+            *ngIf="registerForm.controls['email'].hasError('pattern') && !registerForm.controls['email'].hasError('required')">
+            {{getError('email', 'pattern')}}
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+            {{getError('email', 'required')}}
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="public-form-full-width">
-          <input
-            matInput
-            placeholder="Correo Electrónico"
-            formControlName="email"
-            name="email"
-          />
-        </mat-form-field>
-        <mat-form-field class="public-form-full-width">
-          <input
-            matInput
-            type="password"
-            placeholder="Contraseña"
-            formControlName="password"
-            name="password"
-          />
+          <input matInput type="password" placeholder="Contraseña" formControlName="password" name="password"
+            [errorStateMatcher]="matcher" />
+          <mat-error
+            *ngIf="registerForm.controls['password'].hasError('minlength') && !registerForm.controls['password'].hasError('required')">
+            {{getError('password', 'minlegth')}}
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+            {{getError('password', 'required')}}
+          </mat-error>
         </mat-form-field>
       </mat-card-content>
       <mat-card-content>
-        <button
-          mat-raised-button
-          color="primary"
-          class="btn-block"
-          [disabled]="!registerForm.valid"
-        >
+        <button mat-raised-button color="primary" class="btn-block" [disabled]="!registerForm.valid">
           <mat-icon>login</mat-icon> Registrar
         </button>
       </mat-card-content>

@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { MovieComponent } from './movie/movie.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RegisterComponent } from './register/register.component';
+import { RickAndMortyComponent } from './rick-and-morty/rick-and-morty.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'home',
         component: MovieComponent,
+      },
+      {
+        path: 'rickandmorty',
+        component: RickAndMortyComponent,
       },
       {
         path: 'detail-movie/:idMovie',

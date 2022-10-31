@@ -18,6 +18,7 @@ import { JwtInterceptorProvider } from './core/helpers/interceptors/jwt.intercep
 import { MovieComponent } from './movie/movie.component';
 import { DetailMovieComponent } from './detail-movie/detail-movie.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { RickAndMortyComponent } from './rick-and-morty/rick-and-morty.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NotfoundComponent,
     MovieComponent,
     DetailMovieComponent,
+    RickAndMortyComponent,
   ],
   imports: [
     BrowserModule,

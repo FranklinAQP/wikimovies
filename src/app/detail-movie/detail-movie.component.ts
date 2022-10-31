@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Cast } from '../core/models/credits.model';
 import { MovieModel } from '../core/models/movie.model';
 import { MovieService } from '../core/services/movie.service';
 
@@ -10,6 +11,7 @@ import { MovieService } from '../core/services/movie.service';
 })
 export class DetailMovieComponent implements OnInit {
   movie?: MovieModel;
+  credits?: Cast[];
   constructor(
     private movieService: MovieService,
     private router: ActivatedRoute
@@ -22,8 +24,13 @@ export class DetailMovieComponent implements OnInit {
         this.movieService.getMovieById(idMovie).subscribe({
           next: (response) => {
             this.movie = response;
-            console.log(this.movie);
           },
+        });
+        this.movieService.getCreditsId(idMovie).subscribe({
+          next: (response) => {
+            this.credits = response.cast;
+            //this.credits = this.credits?.filter((item) => !!item.profile_path)
+          }
         });
       },
     });

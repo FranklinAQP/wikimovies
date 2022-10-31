@@ -9,6 +9,7 @@ import { TokenService } from '../services/token.service';
 })
 export class LayoutComponent implements OnInit {
   title = 'Wiki Movies';
+  character = 'RickAndMorty';
   constructor(private tokenService: TokenService, private router: Router) {}
   ngOnInit(): void {}
   logout() {
